@@ -11,7 +11,9 @@ window.onload = function() {
   fileInput.addEventListener("change", event => {
     const file = event.target.files[0];
     textH1.innerText = "Cargando...";
-    document.getElementById("image").src = window.URL.createObjectURL(file);
+    const image = document.getElementById("image");
+    image.src = window.URL.createObjectURL(file);
+    image.removeAttribute("hidden");
 
     load(textH1, file);
   });
@@ -24,6 +26,6 @@ window.onload = function() {
       data: { text }
     } = await worker.recognize(file);
     textH1.innerText = text;
-    await worker.terminate();
+    //await worker.terminate();
   }
 };
